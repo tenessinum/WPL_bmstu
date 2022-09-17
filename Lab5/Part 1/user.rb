@@ -1,3 +1,5 @@
 require_relative 'main'
 
-print(func(gets.chomp.to_f, gets.chomp.to_f))
+puts('Введите число X')
+y_value = func(gets.chomp.to_f)
+print('Число Y - ', y_value)
