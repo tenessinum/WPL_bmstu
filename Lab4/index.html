@@ -5,21 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Оформление заказа</title>
+    <style>
+        .price:hover {
+            background-color: rgb(197, 197, 197);
+        }
+    </style>
     <script>
         let inames = [];
         let iprice = [];
         let i2names = [];
         let i2price = [];
 
-        function addItem() {
+        function addItem(e) {
             let pname = document.getElementById('pname').value;
-            let price = parseInt(document.getElementById('price').value);
+            let price = parseFloat(document.getElementById('price').value);
             let index = inames.indexOf(pname);
             if (index !== -1 && iprice[index] !== price || index === -1) {
                 inames.push(pname);
                 iprice.push(price);
                 displayCart();
             } else alert('Этот предмет уже есть в корзине');
+            e.preventDefault();
         }
 
         function displayCart() {
@@ -28,26 +34,37 @@
             for (let i = 0; i < inames.length; i++) {
                 total += iprice[i];
                 cartdata = cartdata + "<tr><td class='align-middle'>" + inames[i] +
-                    "</td><td class='align-middle'>" + iprice[i] + "</td><td class=\"col-1\"><button type=button class='btn btn-success' onclick = 'displayOrd(" + i +
+                    "</td><td class='align-middle price'>" + iprice[i] + "</td><td class=\"col-1\"><button type=button class='btn btn-success' onclick = 'displayOrd(" + i +
                     ")'>Заказать</button></td></tr>";
             }
-            cartdata += '<tr><td><b>Сумма</b></td><td class="align-middle">' + total +
-                '</td><td></td></tr></table>';
-            console.log(cartdata);
             document.getElementById('cart').innerHTML = cartdata;
         }
 
         function displayOrd(b) {
+            i2names.includes(inames[b])
             i2names.push(inames[b]);
             i2price.push(iprice[b]);
-            let orddata = '<table class="table m-0"><thead class="thead"><tr><th>Наименование</th><th>Цена</th></tr>';
+            let orddata = '<table class="table m-0"><thead class="thead"><tr><th>Наименование</th><th>Цена</th><th>Количество</th></tr>';
             let total = 0;
+            let count = {};
+
             for (let j = 0; j < i2names.length; j++) {
-                total += i2price[j];
-                orddata += "<tr><td>" + i2names[j] + "</td><td>" + i2price[j] +
-                    "</td></tr>";
+                if (count[i2names[j]]) count[i2names[j]] += 1;
+                else count[i2names[j]] = 1;
             }
-            orddata += '<tr><td><b>Сумма</b></td><td>' + total + '</td></tr></table>';
+
+            let processed = []
+
+            for (let j = 0; j < i2names.length; j++) {
+                if (!processed.includes(i2names[j])) {
+                    orddata += "<tr><td>" + i2names[j] + "</td><td class='price'>" + i2price[j] +
+                        "</td><td>" + count[i2names[j]] +
+                        "</td></tr>";
+                    processed.push(i2names[j])
+                }
+                total += i2price[j];
+            }
+            orddata += '<tr><td><b>Сумма</b></td><td>' + total + '</td><td>' + i2names.length + '</td></tr></table>';
             document.getElementById('ord').innerHTML = orddata;
         }
     </script>
@@ -60,20 +77,20 @@
             <div class="card mb-3" style="max-width: 50rem;">
                 <div class="card-header h4">Добавление товара</div>
                 <div class="card-body text-dark">
-                    <form>
+                    <form onsubmit="return addItem(event)">
                         <div class="form-group row">
                             <label for="pname" class="col-sm-5 col-formlabel">Наименование</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="pname">
+                                <input type="text" class="form-control" id="pname" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="price" class="col-sm-5 col-formlabel">Цена</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" id="price">
+                                <input min="0" step="any" type="number" class="form-control" id="price" required>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary w-100" onclick='addItem()'>Добавить
+                        <button type="submit" class="btn btn-primary w-100">Добавить
                         </button>
                     </form>
                 </div>
@@ -82,7 +99,7 @@
         <div class="row pt-4 g-3">
             <div class="col-lg-6 pl-lg-0">
                 <div class="card mb-3">
-                    <div class="card-header h4">Корзина</div>
+                    <div class="card-header h4">Доступные товары</div>
                     <div class="card-body text-dark p-0">
                         <div id="cart"></div>
                     </div>

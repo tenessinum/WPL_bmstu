@@ -1,3 +1,7 @@
+.my-table, .my-table * {
+    border: 1px solid;
+}
+
 .red {
     color: red;
 }

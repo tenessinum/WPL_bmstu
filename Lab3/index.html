@@ -6,21 +6,26 @@
     <title>Лаба 3</title>
     <link rel="stylesheet" href="bootstrap.min.css" />
     <script lang="js">
-        function gen(doc_elem) {
-            let newUl = document.createElement('ul')
+        function gen(doc_elem, prefix = 0) {
+            let el = document.createElement('div')
+            if (doc_elem.nodeName !== '#text')
+                console.log('   '.repeat(prefix), 'Проверяю элементы в', doc_elem.nodeName)
             for (let i = 0; i < doc_elem.childNodes.length; i++) {
-                let listItem = document.createElement("li");
-                listItem.innerHTML = doc_elem.childNodes[i].nodeName;
-                let itemText = gen(doc_elem.childNodes[i]);
-                listItem.appendChild(itemText);
-                newUl.appendChild(listItem)
+                if (doc_elem.childNodes[i].nodeName !== '#text') {
+                    console.log('   '.repeat(prefix), 'Нашел элемент', doc_elem.childNodes[i].nodeName);
+                    let listItem = document.createElement("div");
+                    listItem.innerHTML = '&nbsp'.repeat(prefix) + doc_elem.childNodes[i].nodeName + '<br>';
+                    let itemText = gen(doc_elem.childNodes[i], prefix + 1);
+                    listItem.appendChild(itemText);
+                    el.appendChild(listItem)
+                }
             }
-            return newUl
+            return el
         }
 
         function showDOM() {
-            document.body.removeChild(document.body.lastChild);
-            document.body.appendChild(gen(document.documentElement));
+            document.getElementById("dom-container").innerHTML = "";
+            document.getElementById("dom-container").appendChild(gen(document.documentElement));
         }
     </script>
 </head>
@@ -30,11 +35,12 @@
         <img class="card-img-top" src="avatar.jpeg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Готовая карточка</h5>
-            <p class="card-text">А еще на данной карточке изображен котик, что по моему мнению очень важно</p>
+            <p class="card-text">А еще на данной карточке изображен котик, что очень мило</p>
             <a href="#" class="btn btn-primary">Ссылка никуда</a>
         </div>
     </div>
-    <button type="submit" onclick="showDOM()">Показать DOM-дерево</button>
+    <button type="submit" onclick="showDOM()">Посадить DOM-дерево</button>
+    <div id="dom-container"></div>
 </body>
 
 </html>
