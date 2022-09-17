@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Лаба 3</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script lang="js">
+        function gen(doc_elem) {
+            let newUl = document.createElement('ul')
+            for (let i = 0; i < doc_elem.childNodes.length; i++) {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = doc_elem.childNodes[i].nodeName;
+                let itemText = gen(doc_elem.childNodes[i]);
+                listItem.appendChild(itemText);
+                newUl.appendChild(listItem)
+            }
+            return newUl
+        }
+
+        function showDOM() {
+            document.body.removeChild(document.body.lastChild);
+            document.body.appendChild(gen(document.documentElement));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="card" style="width: 18rem; margin-bottom: 10px">
+        <img class="card-img-top" src="avatar.jpeg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Готовая карточка</h5>
+            <p class="card-text">А еще на данной карточке изображен котик, что по моему мнению очень важно</p>
+            <a href="#" class="btn btn-primary">Ссылка никуда</a>
+        </div>
+    </div>
+    <button type="submit" onclick="showDOM()">Показать DOM-дерево</button>
+</body>
+
+</html>

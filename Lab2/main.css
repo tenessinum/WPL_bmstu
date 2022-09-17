@@ -1,0 +1,27 @@
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.font-comic {
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.font-big {
+    font-size: 1.1em;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+.time-table div {
+    border: 1px solid;
+}

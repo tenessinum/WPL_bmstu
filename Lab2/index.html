@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICS6 Bootstrap</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="main.css" />
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            margin-bottom: 40px;
+        }
+
+        main {
+            margin-top: 15px;
+        }
+
+        footer {
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .my-primary {
+            background-color: #1A237E;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark my-primary">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    59
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col-4">
+                <img src="avatar.jpeg" alt="avatar" width="150" height="150">
+            </div>
+            <div class="col-8">
+                <p>Это любой текст</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <form>
+                    <table border="1">
+                        <tr>
+                            <td>Имя:</td>
+                            <td><input type="date" name="fname" /></td>
+                        </tr>
+                        <tr>
+                            <td>Фамилия:</td>
+                            <td><input type="text" name="lname" /></td>
+                        </tr>
+                        <tr>
+                            <td>Пол:</td>
+                            <td>
+                                <input type="radio" name="gender" value="м" />м
+                                <input type="radio" name="gender" value="ж" />ж
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="Отправить" />
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="col-5">
+                <div class="container mt-4 time-table col">
+                    <div class="row">
+                        <div class="col">Время</div>
+                        <div class="col">чс</div>
+                        <div class="col">зн</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">08:30-10:05</div>
+                        <div class="col">(сем)Электротехника</div>
+                        <div class="col">(сем)Электротехника</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">10:15-11:50</div>
+                        <div class="col">(лек)Электротехника</div>
+                        <div class="col">(лек)Электротехника</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">12:00-13:35</div>
+                        <div class="col">(лаб)Электротехника</div>
+                        <div class="col">(лаб)Электротехника</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>
+                    В провинциальном <span class="red">городке</span><br>
+                    Был <span class="blue">праздник</span>, музыка звучала,<br>
+                    Но вот в ликующей <span class="green">толпе</span><br>
+                    Возник зловещий <span class="font-comic">лик бродяги</span>...<br>
+                    Он шёл, как будто бы <span class="font-big">один</span>,<br>
+                    <span class="font-italic">Толпа</span> его не замечала.<br>
+                    И как-то <span class="red font-big">странно</span> на него<br>
+                    Смотрели местные <span class="font-comic font-italic">собаки</span>...<br>
+                    В чёрном <span class="green font-italic">цилиндре</span>, в наряде старинном,<br>
+                    В город на праздник <span class="font-big font-italic">путник</span> очень спешил.<br>
+                    По горам пробирался и <span class="blue font-big font-comic">улыбался</span>,<br>
+                    Но камень сорвался в пропасть с горных <span class="green">вершин</span>...<br>
+                </span>
+            </div>
+        </div>
+    </main>
+    <footer class="my-primary">
+        <div class="container">
+            <p class="footer-text">Footer</p>
+        </div>
+    </footer>
+</body>
+
+</html>
