@@ -1,4 +1,7 @@
 require_relative 'main'
 
-puts(calc_s(0.001))
-puts(calc_s(0.0001))
+result1 = calc_sum(0.01)
+result2 = calc_sum(0.001)
+
+puts("Вычисление с точностью 0.01 дало результат #{result1[0]}, потребовалось итераций - #{result1[1]}")
+puts("Вычисление с точностью 0.001 дало результат #{result2[0]}, потребовалось итераций - #{result2[1]}")

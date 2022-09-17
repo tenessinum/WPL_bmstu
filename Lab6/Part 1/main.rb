@@ -1,18 +1,14 @@
-def calc_s(accuracy)
-  left = 1
-  right = 2
-  puts("Количество итераций для e = #{accuracy}: #{(right - left) / accuracy * 2}")
-
-  integrate(left, right, accuracy / 2)
-end
-
-def integrate(left, right, step)
+def calc_sum(accuracy)
   sum = 0.0
+  step = 0.0
+  k = 1
 
-  until left >= right
-    sum += Math.log(left)
-    left += step
+  loop do
+    step = 1.0 / (k * (k + 1) * (k + 2) * (k + 3))
+    sum += step
+    k += 1
+    break if step < accuracy
   end
 
-  sum * step
+  [sum, k]
 end
