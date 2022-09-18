@@ -1,40 +1,33 @@
-# Class word
-class Word
-  attr_accessor :value
+# Class patient
+class Patient
+  attr_reader :surname
+  attr_accessor :age
 
-  def initialize(value)
-    @value = value
-  end
-
-  def count_length
-    @value.length
+  def initialize(surname, age)
+    @surname = surname
+    @age = age
   end
 
   def print
-    puts "Word value: #{@value}"
+    puts "Больной с фамилией - #{@surname}, возраст - #{age}"
   end
 end
 
-# Class word with length
-class MeasuredWord < Word
-  attr_reader :word_length
+# Class patient with examination
+class ExaminationPatient < Patient
+  attr_accessor :last_examination_year
 
-  def initialize(value)
-    super value
-    @word_length = @value.length
+  def initialize(surname, age, last_examination_year)
+    super surname, age
+    @last_examination_year = last_examination_year
   end
 
-  def value=(val)
-    @value = val
-    @word_length = val.length
-  end
-
-  def calc_consonants
-    @value.split('').count{ |letter| !'aeiou'.include?(letter.downcase) }
+  def next_examination_year
+    @last_examination_year + 3
   end
 
   def print
     super
-    puts "Word length: #{@word_length}"
+    puts "Год последней диспансеризации - #{@last_examination_year}, год следующей - #{next_examination_year}"
   end
 end

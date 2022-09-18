@@ -1,7 +1,5 @@
 require_relative 'main'
 
-ints = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1]
-
-create_file_f(ints)
-create_file_p(1)
+create_file('F.txt', 'i love cats')
+create_file('G.txt', 'i love kittens')
+write_matches_to_file('F.txt', 'G.txt', 'H.txt')

@@ -1,30 +1,15 @@
-def create_file_f(ints)
-  File.write('F.txt', ints.map(&:to_s).join(' '))
+def create_file(file_name, string)
+  File.write(file_name, string)
 end
 
-def create_file_p(variant)
-  ints = File.readlines('F.txt', chomp: true).join(' ').split.map(&:to_i)
-  negative_ints = ints.select(&:negative?)
-  positive_ints = ints.select(&:positive?)
-  new_ints = []
+def write_matches_to_file(first_file_name, second_file_name, output_file_name)
+  first_enum = File.read(first_file_name).each_char
+  second_enum = File.read(second_file_name).each_char
+  matched = first_enum.zip(second_enum).take_while { |first_c, second_c| first_c == second_c }
 
-  iter = case variant
-         when 1
-           5
-         when 2
-           20
-         else
-           1
-         end
-
-  while new_ints.length < ints.length
-    iter.times do
-      new_ints.push(positive_ints.pop)
-    end
-    iter.times do
-      new_ints.push(negative_ints.pop)
-    end
+  if matched.length.zero?
+    puts('В файлах нет начальных совпадающих компонентов')
+  else
+    create_file(output_file_name, matched.transpose[0].join)
   end
-
-  File.write('P.txt', new_ints.map(&:to_s).join(' '))
 end

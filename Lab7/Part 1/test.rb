@@ -1,35 +1,35 @@
 require 'minitest/autorun'
 require_relative 'main'
 
-# File rewriter tester
+# File tester
 class Test < Minitest::Test
   def initialize(name)
     super name
-    @filename = 'F.txt'
-    @ints = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10,
-             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1]
+    @first_file_name = 'F.txt'
+    @second_file_name = 'G.txt'
+    @output_file = 'H.txt'
   end
 
   def test_create
-    create_file_f(@ints)
-    assert_path_exists @filename
-  end
-
-  def test_second_variant
-    create_file_f(@ints)
-    create_file_p(2)
-    result = File.readlines('P.txt', chomp: true).join(' ')
-    assert_equal '10 9 8 7 6 5 4 3 2 1 1 2 3 4 5 6 7 8 9 10 ' \
-                 '-1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -10 -9 -8 -7 -6 -5 -4 -3 -2 -1',
-                 result, 'Программа отработала неверно'
+    create_file(@first_file_name, 'test string')
+    assert_path_exists @first_file_name, 'Не получилось создать файл'
   end
 
   def test_first_variant
-    create_file_f(@ints)
-    create_file_p(1)
-    result = File.readlines('P.txt', chomp: true).join(' ')
-    assert_equal '10 9 8 7 6 -1 -2 -3 -4 -5 5 4 3 2 1 -6 -7 -8 -9 -10 ' \
-                 '1 2 3 4 5 -10 -9 -8 -7 -6 6 7 8 9 10 -5 -4 -3 -2 -1',
-                 result, 'Программа отработала неверно'
+    create_file(@first_file_name, 'test string1')
+    create_file(@second_file_name, 'test string2')
+    write_matches_to_file(@first_file_name, @second_file_name, @output_file)
+
+    assert_path_exists @output_file, 'Файл не был создан'
+    result = File.read(@output_file)
+    assert_equal 'test string', result, 'Программа отработала неверно'
+  end
+
+  def test_second_variant
+    create_file(@first_file_name, 'test string')
+    create_file(@second_file_name, 'string test')
+    write_matches_to_file(@first_file_name, @second_file_name, @output_file)
+
+    assert File.file?(@output_file), 'Файл не должно быть так как нет совпадающих начальных компонентов'
   end
 end

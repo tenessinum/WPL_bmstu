@@ -3,13 +3,8 @@ require_relative 'main'
 
 # Class tester
 class Test < Minitest::Test
-  def setup
-    super
-    @name = Word.new 'Igor'
-    @measured_name = MeasuredWord.new 'Egor'
-  end
-
   def test_hierarchy
-    assert_kind_of Word, @measured_name
+    examination_patient = ExaminationPatient.new 'Нуруллаев', 19, 2021
+    assert_kind_of Patient, examination_patient
   end
 end
