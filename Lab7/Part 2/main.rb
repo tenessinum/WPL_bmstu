@@ -1,33 +1,42 @@
-# Class patient
-class Patient
-  attr_reader :surname
-  attr_accessor :age
+# Class triangle
+class Triangle
+  attr_reader :side_a, :side_b, :side_c
 
-  def initialize(surname, age)
-    @surname = surname
-    @age = age
+  def initialize(side_a, side_b, side_c)
+    @side_a = side_a
+    @side_b = side_b
+    @side_c = side_c
   end
 
   def print
-    puts "Больной с фамилией - #{@surname}, возраст - #{age}"
+    puts "Треугольник со сторонами #{@side_a}, #{@side_b}, #{@side_c}"
+  end
+
+  def area
+    p = (@side_a + @side_b + @side_c) / 2
+    Math.sqrt(p * (p - @side_a) * (p - @side_b) * (p - @side_c))
   end
 end
 
-# Class patient with examination
-class ExaminationPatient < Patient
-  attr_accessor :last_examination_year
+# Class quadrilateral
+class Quadrilateral < Triangle
+  attr_reader :side_d, :diagonal
 
-  def initialize(surname, age, last_examination_year)
-    super surname, age
-    @last_examination_year = last_examination_year
-  end
-
-  def next_examination_year
-    @last_examination_year + 3
+  def initialize(side_a, side_b, side_c, side_d, diagonal)
+    super side_a, side_b, side_c
+    @side_d = side_d
+    @diagonal = diagonal
   end
 
   def print
-    super
-    puts "Год последней диспансеризации - #{@last_examination_year}, год следующей - #{next_examination_year}"
+    puts "Четырехугольник со сторонами #{@side_a}, #{@side_b}, #{@side_c}, #{@side_d}, и диагональю #{@diagonal}"
+  end
+
+  def area
+    p1 = (@side_a + @side_b + @diagonal) / 2
+    area1 = Math.sqrt(p1 * (p1 - @side_a) * (p1 - @side_b) * (p1 - @diagonal))
+    p2 = (@side_c + @side_d + @diagonal) / 2
+    area2 = Math.sqrt(p2 * (p2 - @side_c) * (p2 - @side_d) * (p2 - @diagonal))
+    area1 + area2
   end
 end

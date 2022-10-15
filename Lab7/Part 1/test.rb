@@ -5,31 +5,28 @@ require_relative 'main'
 class Test < Minitest::Test
   def initialize(name)
     super name
-    @first_file_name = 'F.txt'
-    @second_file_name = 'G.txt'
-    @output_file = 'H.txt'
+    @input_file_name = 'F.txt'
+    @output_file_name = 'G.txt'
   end
 
   def test_create
-    create_file(@first_file_name, 'test string')
-    assert_path_exists @first_file_name, 'Не получилось создать файл'
+    create_file(@input_file_name, 'test string')
+    assert_path_exists @input_file_name, 'Не получилось создать файл'
   end
 
-  def test_first_variant
-    create_file(@first_file_name, 'test string1')
-    create_file(@second_file_name, 'test string2')
-    write_matches_to_file(@first_file_name, @second_file_name, @output_file)
-
-    assert_path_exists @output_file, 'Файл не был создан'
-    result = File.read(@output_file)
-    assert_equal 'test string', result, 'Программа отработала неверно'
+  def self.create_string
+    (0...(rand(10..20))).map { ('0'..'z').to_a[rand(62)] }.join
   end
 
-  def test_second_variant
-    create_file(@first_file_name, 'test string')
-    create_file(@second_file_name, 'string test')
-    write_matches_to_file(@first_file_name, @second_file_name, @output_file)
+  def self.check_result(string)
+    %w[e E r t U].all? { |char| !string.include? char }
+  end
 
-    assert File.file?(@output_file), 'Файл не должно быть так как нет совпадающих начальных компонентов'
+  def test_first
+    create_file('F.txt', (4..10).map { Test.create_string }.join("\n"))
+    process_file(@input_file_name, @output_file_name)
+    assert_path_exists @output_file_name, 'Файл не был создан'
+    result = File.read(@output_file_name)
+    assert Test.check_result(result), 'Программа отработала неверно'
   end
 end

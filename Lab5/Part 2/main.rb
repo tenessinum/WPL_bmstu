@@ -1,11 +1,12 @@
-def get_k_min_max(array, param_k)
-  k_min_array = array.sort
-  k_max_array = array.sort { |a, b| b <=> a }
-
-  (array.length - param_k).times do
-    k_max_array.pop
-    k_min_array.pop
+def analyse_temperature(dates, temperatures)
+  dates.zip(temperatures).select do |_date, temperature|
+    temperature < -10
   end
+end
 
-  [k_min_array, k_max_array]
+def pretty_print(temp_data)
+  puts("Дата\tтемпература")
+  temp_data.each do |row|
+    print(row[0], "\t", row[1], "\n")
+  end
 end

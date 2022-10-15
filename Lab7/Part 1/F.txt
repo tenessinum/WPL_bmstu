@@ -1,12 +1,7 @@
-require_relative 'main'
-
-create_file('F.txt', "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Nam eleifend erat non metus auctor bibendum.
 Morbi ultricies justo id posuere tristique.
 Donec elementum mauris nec erat commodo, sed sagittis dolor elementum.
 Ut commodo augue in arcu aliquam, id dapibus tellus suscipit.
 Aenean commodo justo quis luctus viverra.
 Ut ac tortor eget lorem efficitur sagittis.
-")
-
-process_file('F.txt', 'G.txt')

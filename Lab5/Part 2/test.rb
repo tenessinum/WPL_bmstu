@@ -3,18 +3,17 @@ require_relative 'main'
 
 # Function tester
 class Test < Minitest::Test
-  def self.gen_array(param_k)
-    array = []
-    rand((param_k + 2)..(param_k + 10)).times { array.push(rand(-10..10)) }
-    array
+  def self.gen_temperatures
+    [10, 9, 5, 0, -2, -5, -10, -11, -12, -15, -5, 0, 4, 6]
+  end
+
+  def self.gen_dates
+    ['15.20.2022', '16.20.2022', '17.20.2022', '18.20.2022', '19.20.2022', '20.20.2022', '21.20.2022', '22.20.2022',
+     '23.20.2022', '24.20.2022', '25.20.2022', '26.20.2022', '27.20.2022', '28.20.2022']
   end
 
   def test_generated
-    k = rand(4..10)
-    array = Test.gen_array(k)
-    print('Для массива ', array, ' и k = ', k, " результат:\n")
-    result = get_k_min_max(array, k)
-    print('k наименьших - ', result[0], ' и k наибольших - ', result[1])
-    assert result[0].length == k && result[1].length == k
+    result = analyse_temperature(Test.gen_dates, Test.gen_temperatures)
+    assert_equal result, [['22.20.2022', -11], ['23.20.2022', -12], ['24.20.2022', -15]]
   end
 end

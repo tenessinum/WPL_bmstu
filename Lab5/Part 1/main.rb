@@ -1,4 +1,3 @@
 def func(param_x)
-  temp_value = (param_x**3) + (param_x**2) - param_x
-  Math.tan(temp_value) - Math.sin(temp_value.abs) + (temp_value**2)
+  Math.log10(param_x * param_x / (param_x - 2)) * Math.exp(param_x)
 end

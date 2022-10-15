@@ -1,14 +1,15 @@
-def calc_sum(accuracy)
+def calc_int(accuracy)
   sum = 0.0
-  step = 0.0
-  k = 1
+  left = 1.0
+  right = 2.0
+  k = 0
 
   loop do
-    step = 1.0 / (k * (k + 1) * (k + 2) * (k + 3))
-    sum += step
+    sum += Math.log(left)
+    left += accuracy
     k += 1
-    break if step < accuracy
+    break if left >= right
   end
 
-  [sum, k]
+  [sum / k, k]
 end

@@ -1,4 +1,10 @@
 require_relative 'main'
 
-patient = ExaminationPatient.new 'Нуруллаев', 19, 2021
-patient.print
+triangle = Triangle.new(3, 4, 5)
+quadrilateral = Quadrilateral.new(3, 4, 3, 4, 5)
+
+triangle.print
+quadrilateral.print
+
+puts("Площадь треугольника - #{triangle.area}")
+puts("Площадь четырехугольника - #{quadrilateral.area}")

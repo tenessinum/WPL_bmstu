@@ -1,20 +1,18 @@
 require_relative 'main'
 
-array = []
+temperatures = []
+dates = []
 
-puts('Введите K')
-
-k = gets.chomp.to_i
-
-puts('Теперь вводите элементы массива (через Enter), как закончите - нажмите Enter')
+puts('Введите информацию о температуре (в формате "dd.mm.yyyy температура" через Enter), как закончите - нажмите Enter')
 
 input = gets.chomp
 
 while input != ''
-  array.push(input.to_i)
+  temp = input.split
+  dates.push(temp[0])
+  temperatures.push(temp[1].to_f)
   input = gets.chomp
 end
 
-result = get_k_min_max(array, k)
-
-print(k, ' наименьших - ', result[0].join(', '), ', а ', k, ' наибольших - ', result[1].join(', '))
+result = analyse_temperature(dates, temperatures)
+pretty_print(result)

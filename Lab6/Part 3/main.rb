@@ -1,4 +1,4 @@
-def trap(x_a, x_b, n_divisions, f_lambda = nil, &f_block)
+def intg(x_a, x_b, n_divisions, f_lambda = nil, &f_block)
   func = f_lambda || f_block
   range = (x_b - x_a).to_f
   dx = range / n_divisions
