@@ -1,0 +1,18 @@
+<%= form_with(model: simons, url: simons_path ) do |form| %>
+    <% if simons.errors.any? %>
+        <div id="error_explanation">
+            <h2>Пожалуйста, исправьте следующие ошибки ввода:</h2>
+            <ul>
+                <% simons.errors[:input].each do |error| %>
+                    <li>
+                        <%= error %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="input-group d-flex w-25">
+        <%= form.text_field :max_n, type: 'number' , placeholder: 'Введите n:' , class: 'form-control' , required: true %>
+        <%= form.submit 'Расчитать' , type: 'submit' , class: 'btn btn-primary' %>
+    </div>
+<% end %>

@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<h1>Результат расчета</h1>
+<p><strong>Вы ввели: </strong>
+<%= @simons.max_n %></p>
+<%= render inline: @view %>
+<%= link_to 'На главную', simons_path, class: 'btn btn-link btn-sm' %>
+<%= link_to 'Ввести новое число', new_simon_path, class: 'btn btn-link btnsm' %>
