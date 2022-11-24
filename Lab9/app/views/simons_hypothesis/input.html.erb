@@ -1,0 +1,47 @@
+<script>
+    async function getSimonsData() {
+        let request = await fetch("/simons_hypothesis/result.json?max_n=" +
+            document.forms["number"].max_n.value);
+        let result = await request.json();
+        if (result && result["value"].length) {
+            let table = document.getElementById("result_table");
+            table.innerHTML = "<tr><th>Факториал</th><th>Последовательность</th></tr>";
+            result["value"].forEach((line) => {
+                table.innerHTML +=
+                    `<tr><td>${line.f}</td><td>${line.a1}, ${line.a2}, ${line.a3}</td></tr>`;
+            });
+            document.getElementById("result").style.display = "block";
+            document.getElementById("error").style.display = "none";
+        } else {
+            document.getElementById("result").style.display = "none";
+            document.getElementById("error").style.display = "block";
+        }
+    }
+</script>
+
+<h1>Гипотеза Симона</h1>
+<p>Существует гипотеза Симона о факториале.<br/>
+Она гласит, что существует 4 факториала, которые представимы в виде произведения трех последовательных чисел.<br/>
+Например: 4! = 2 · 3 · 4.<br/>
+Определить эту четверку, подсчитать действительное количество таких факториалов, если это возможно и тем самым доказать неправильность гипотезы.<br/>
+Вывести на печать результаты каждой итерации и финальных расчетов.
+</p>
+<form id="number">
+    <label for="number">Введите максимальное количество итераций:</label>
+    <input type="number" name="max_n" id="number" value="12" min="1">
+    <input
+        type="submit" name="commit" value="Найти числа"
+        onclick="getSimonsData(); return false;" data-disable-with="Найти числа">
+</form>
+
+<div id="result" style="display: none">
+    <h2>Результат</h2>
+    <table class="palindrome-table">
+        <tbody id="result_table"></tbody>
+    </table>
+</div>
+
+<div id="error" style="display: none">
+    <h2>Ошибка</h2>
+    <p>Повторите попытку.</p>
+</div>

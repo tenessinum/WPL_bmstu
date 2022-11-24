@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Гипотеза Симона</h1>
+    <p>Существует гипотеза Симона о факториале.<br/>
+    Она гласит, что существует 4 факториала, которые представимы в виде произведения трех последовательных чисел.<br/>
+    Например: 4! = 2 · 3 · 4.<br/>
+    Определить эту четверку, подсчитать действительное количество таких факториалов, если это возможно и тем самым доказать неправильность гипотезы.<br/>
+    Вывести на печать результаты каждой итерации и финальных расчетов.</p>
+    <%= form_tag url_for(controller: :proxy, action: :output), method: 'get' do %>
+        <%= label_tag "Максимальное количество итераций n:" %>
+        <%= number_field_tag 'max_n', '100', min: 1 %>
+        <p>Выберите, где будет обрабатываться результат:</p>
+        <div>
+            <input type="radio" id="server-choice"
+            name="side" value="server">
+            <label for="server-choice">На сервере</label>
+            <input type="radio" id="client-choice"
+            name="side" value="client" checked>
+            <label for="client-choice">XML в браузере</label>
+            <input type="radio" id="client-xslt-choice"
+            name="side" value="client-with-xslt">
+            <label for="client-xslt-choice">ХМL с помощью XSLT в браузере</label>
+        </div>
+        <br/>
+        <%= submit_tag 'Найти числа' %>
+    <% end %>
+</div>
