@@ -1,0 +1,8 @@
+<%= form_tag url_for(controller: :session, action: :create), method: 'post' do %>
+  <%= label_tag 'username' %>
+  <%= text_field_tag :username %>
+  <%= label_tag 'password' %>
+  <%= password_field_tag 'password' %>
+  <%= submit_tag 'Логин' %>
+<% end %>
+<%= link_to 'Регистрация', url_for(controller: :users, action: :new), class: 'btn btn-link btn-sm' %>

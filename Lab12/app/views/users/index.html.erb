@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Пользователи</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Показать пользователя", user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "Новый пользователь", new_user_path %>
+<%= link_to 'обратно к рассчетам', url_for(controller: :simons, action: :input), class: 'btn btn-link btn-sm' %>
